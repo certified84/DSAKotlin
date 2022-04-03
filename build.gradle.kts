@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.5.31"
+    kotlin("jvm") version "1.6.10"
     application
 }
 
@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-    implementation("junit:junit:4.13.1")
+    implementation("junit:junit:4.13.2")
     testImplementation(kotlin("test-junit"))
 }
 
