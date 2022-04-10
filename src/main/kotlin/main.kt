@@ -21,10 +21,130 @@ fun main(args: Array<String>) {
 //    checkArmstrong(0, 9999)
 
 //    println(occurrence('2'))
-    println(reverse(1385757))
+//    println(reverse(1385757))
+//    println(areaOfCircle(readln().toDouble()))
+//    println(areaOfTriangle(readLine()!!.toDouble(), readLine()!!.toDouble()))
+//    println(areaOfRectangle(readLine()!!.toDouble(), readLine()!!.toDouble()))
+//    println(areaOfParallelogram(readLine()!!.toDouble(), readLine()!!.toDouble()))
+//    println(areaOfRhombus(readLine()!!.toDouble(), readLine()!!.toDouble()))
+//    println(areaOfEquilateralTriangle(readLine()!!.toDouble()))
+//    println(perimeterOfCircle(readLine()!!.toDouble()))
+//    voters()
+
 }
 
-private fun reverse(n: Int): Int{
+fun forLoop() {
+    val x = 1..10
+    val y = 1 until 10
+    for (i in 1..10) {
+        println(i)
+    }
+
+    for (i in 1 until 10) {
+        println(i)
+    }
+}
+
+fun leapYear(n: Int): String {
+    if (n % 4 == 0) {
+        if (n % 100 == 0) {
+            return if (n % 400 == 0) {
+                "$n is a Leap Year"
+            } else "$n is a not a Leap Year"
+        }
+        return "$n is a Leap Year"
+    } else return "$n is a not a Leap Year"
+
+    fun print(n: Int) {
+        println(leapYear(n))
+    }
+}
+
+fun factorial(n: Int): Int {
+    if (n == 0) return 1
+    return n * factorial(n - 1)
+}
+
+//fun factorial(n: Int): Int {
+//    var factorial = 1
+//    if (n == 0 || n == 1) return 1
+//    for (i in 1 until n) factorial *= i
+//    return factorial * n
+//}
+
+fun largest(): String {
+    val arr = mutableListOf<Int>()
+    var largest = 0
+    while (true) {
+        val n = readLine()!!.toInt()
+        if (n == 0) break
+        arr.add(n)
+    }
+    for (i in arr.indices) {
+        val temp = arr[i]
+        if (temp > largest) largest = temp
+    }
+    return "The largest digit is $largest"
+}
+
+fun sum(): String {
+    val arr = mutableListOf<Int>()
+    var sum = 0
+    while (true) {
+        val n = readLine()!!.toInt()
+        if (n == 0) break
+        arr.add(n)
+    }
+    for (i in arr.indices) {
+        val temp = arr[i]
+        sum += temp
+    }
+    return "The sum of the digits is $sum"
+}
+
+fun subtractProductAndSum(n: Int): Int {
+    val str = n.toString()
+    var product = 1
+    var sum = 0
+    if (str.length == 1) {
+        return n.toInt() - n.toInt()
+    }
+    str.forEach {
+        product *= it.toString().toInt()
+        sum += it.toString().toInt()
+    }
+    return product - sum
+}
+
+private fun perimeterOfCircle(radius: Double): Double {
+    return 2 * Math.PI * radius
+}
+
+private fun areaOfEquilateralTriangle(a: Double): Double {
+    return ((3.0.pow(.5) / 4.0) * a * a)
+}
+
+private fun areaOfRhombus(p: Double, q: Double): Double {
+    return (p * q) / 2
+}
+
+private fun areaOfParallelogram(base: Double, height: Double): Double {
+    return base * height
+}
+
+private fun areaOfRectangle(length: Double, width: Double): Double {
+    return length * width
+}
+
+private fun areaOfTriangle(base: Double, height: Double): Double {
+    return (base * height) / 2
+}
+
+private fun areaOfCircle(r: Double): Double {
+    return r * r * Math.PI
+}
+
+private fun reverse(n: Int): Int {
     var num = n
 //    return n.toString().reversed().toInt()
 
@@ -59,13 +179,26 @@ data class Student(val name: String, val age: Int)
 
 private fun students() {
     val students = listOf(
-        Student("Sammie", 22),
-        Student("Shola", 35),
-        Student("Shollz", 25),
-        Student("Seun", 19)
+        Student("Sammie", 22), Student("Shola", 35), Student("Shollz", 25), Student("Seun", 19)
     )
-    println(students.sortedBy { it.age }.take(3))
-    println(students.sortedBy { it.age }.takeLast(2))
+    println(students.sortedBy { it.age }.drop(3))
+    println(students.sortedBy { it.age }.dropLast(2))
+}
+
+data class Citizens(val name: String, val age: Int)
+
+private fun voters() {
+    val citizens = listOf(
+        Citizens("Naruto", 12),
+        Citizens("Hinata", 19),
+        Citizens("Sasuke", 15),
+        Citizens("Sakura", 22),
+        Citizens("Itachi", 12),
+        Citizens("Kakashi", 20),
+    )
+    val (voters, nonVoters) = citizens.partition { it.age >= 18 }
+    println(voters)
+    println(nonVoters)
 }
 
 private fun checkArmstrong(x: Int, y: Int) {
@@ -137,4 +270,8 @@ fun showOutput(names: Array<String>) {
 // O(1)
 fun sumFromOne(n: Int): Int {
     return n * (n + 1) / 2
+}
+
+class College(val name: String, val student: Student) {
+
 }
